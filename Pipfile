@@ -7,6 +7,11 @@ name = "pypi"
 pillow = "*"
 django-jazzmin = "*"
 django = "*"
+psycopg2-binary = "*"
+dj-database-url = "*"
+python-decouple = "*"
+gunicorn = "*"
+whitenoise = "*"
 
 [dev-packages]
 

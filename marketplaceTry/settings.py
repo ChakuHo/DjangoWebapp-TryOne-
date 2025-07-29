@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+import dj_database_url # Import dj_database_url to handle database URLs/main jastai ho database ko lagi
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +26,11 @@ SECRET_KEY = 'django-insecure-wup*h-h5nfgss(avhswut#41u-lz0jd&=*1%=o1gj_e$&%it*^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    https://djangowebapp-tryone.onrender.com,  # Add your production domain here
+    '127.0.0.1',  # Localhost for development
+    'localhost',  # Localhost for development    
+]
 
 
 # Application definition
@@ -53,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add WhiteNoise middleware for static files
 ]
 
 ROOT_URLCONF = 'marketplaceTry.urls'
@@ -81,10 +87,12 @@ WSGI_APPLICATION = 'marketplaceTry.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(  # chanage gareko bracket lai plus dj_database_url.config( yeti line add gareko
+        default=os.environ.get('DATABASE_URL')
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+
+    )
 }
 
 
@@ -143,3 +151,11 @@ MEDIA_ROOT = BASE_DIR / 'media' # Where files are physically stored on disk
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#yoo add gareko ho to use WhiteNoise for serving static files in production plus deploy garne ko step ho yo ni
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directory where static files will be collected/destination for static files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # Use WhiteNoise for static files storage
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://djangowebapp-tryone.onrender.com',  # Add your production domain here
+]
