@@ -1,0 +1,33 @@
+<footer class="bg-dark text-white text-center py-3 mt-5">
+  <div class="container">
+    <p class="mb-0">
+      {{ site_setting.copyright_text }}<br>
+      Developed by Bigyan Nemkul
+      {% if site_setting.contact_email %}
+        <br>Contact: <a href="mailto:{{ site_setting.contact_email }}" class="text-white">{{ site_setting.contact_email }}</a>
+      {% endif %}
+      {% if site_setting.contact_phone %}
+        <br>Phone: {{ site_setting.contact_phone }}
+      {% endif %}
+      {% if site_setting.address %}
+        <br>Address: {{ site_setting.address }}
+      {% endif %}
+    </p>
+    <div>
+      {% if site_setting.facebook_url %}
+        <a href="{{ site_setting.facebook_url }}" target="_blank" class="text-white me-2">Facebook</a>
+      {% endif %}
+      {% if site_setting.twitter_url %}
+        <a href="{{ site_setting.twitter_url }}" target="_blank" class="text-white me-2">Twitter</a>
+      {% endif %}
+      {% if site_setting.site_url %}
+        <a href="{{ site_setting.site_url }}" target="_blank" class="text-white me-2">Website</a>
+      {% endif %}
+    </div>
+    <div>
+      {% for page in pages %}
+        <a class="nav-link d-inline-block" href="{% url 'page_detail' page.slug %}">{{ page.title }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</footer>

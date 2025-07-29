@@ -1,0 +1,41 @@
+{% extends 'master/base1.html' %}
+{% block content %}
+<h2 class="mb-4">Featured Products</h2>
+<div class="row">
+  {% for product in products %}
+    <div class="col-md-4 mb-3">
+      <div class="card">
+        {% if product.image %}
+          <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="max-width: 100%; max-height: 220px; object-fit: contain; margin: auto; display: block;">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">Rs. {{ product.price }}</p>
+          <a href="{% url 'products_details1' product.slug %}" class="btn btn-primary">View</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<h2 class="mt-5 mb-4">Latest Blogs</h2>
+<div class="list-group">
+  {% for blog in blogs %}
+    <a href="{% url 'details1' blog.slug %}" class="list-group-item list-group-item-action">
+      {% if blog.image %}
+        <img src="{{ blog.image.url }}" style="height:40px;width:40px;object-fit:cover;margin-right:10px;" alt="{{ blog.title }}">
+      {% endif %}
+      {{ blog.title }}
+    </a>
+  {% endfor %}
+</div>
+
+<h2 class="mt-6 mb-5">Pages</h2>
+<div class="list-group">
+  {% for page in pages %}
+    <a href="{% url 'page_detail' page.slug %}" class="list-group-item list-group-item-action">
+      {{ page.title }}
+    </a>
+  {% endfor %}
+</div>
+{% endblock %}
