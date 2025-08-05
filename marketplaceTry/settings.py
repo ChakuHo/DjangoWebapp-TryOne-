@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-wup*h-h5nfgss(avhswut#41u-lz0jd&=*1%=o1gj_e$&%it*^
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'https://djangowebapp-tryone.onrender.com',  # Add your production domain here
+    'djangowebapp-tryone.onrender.com',  # Add your production domain here
     '127.0.0.1',  # Localhost for development
     'localhost',  # Localhost for development    
 ]
