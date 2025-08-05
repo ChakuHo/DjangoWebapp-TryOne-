@@ -87,13 +87,13 @@ WSGI_APPLICATION = 'marketplaceTry.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES ={  #yo bracket add gareko ho hai
-     'default':{
-    #  dj_database_url.config(
-    #   # chanage gareko bracket lai plus dj_database_url.config( yeti line add gareko
-    #     default=os.environ.get('DATABASE_URL')
-                'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': BASE_DIR / 'db.sqlite3', 
-     }
+     'default':dj_database_url.config(
+    #  chanage gareko bracket lai plus dj_database_url.config( yeti line add gareko
+        default=os.environ.get('DATABASE_URL')
+                # 'ENGINE': 'django.db.backends.sqlite3',
+                # 'NAME': BASE_DIR / 'db.sqlite3', 
+     )
+     
 }
 
 
